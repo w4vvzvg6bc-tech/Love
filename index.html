@@ -17,13 +17,14 @@ box-sizing:border-box;
 
 
 body{
-
+width:100vw;
 height:100vh;
 overflow:hidden;
 font-family:Arial, sans-serif;
-
 }
 
+
+/* ФОН */
 
 .background{
 
@@ -31,13 +32,17 @@ position:absolute;
 width:100%;
 height:100%;
 
-background:url("IMG_0897.jpeg") center/cover no-repeat;
+background-image:url("IMG_0897.jpeg");
+background-size:cover;
+background-position:center;
 
 }
 
 
 
-.title{
+/* верхняя надпись */
+
+.mainText{
 
 position:absolute;
 
@@ -47,196 +52,147 @@ width:100%;
 
 text-align:center;
 
-font-size:70px;
+font-size:60px;
 
 font-weight:bold;
 
 color:white;
 
-text-shadow:
-0 5px 20px black;
-
-animation:show 4s;
-
-
-}
-
-
-@keyframes show{
-
-from{
-opacity:0;
-transform:translateY(-30px);
-}
-
-to{
-opacity:1;
-}
+text-shadow:0 5px 20px black;
 
 }
 
 
 
-/* мартышка */
+/* МАРТЫШКА */
 
 .monkey{
 
 position:absolute;
 
-right:8%;
+right:10%;
 
-bottom:5%;
+bottom:80px;
 
 width:420px;
 
 opacity:0;
+
+transform:translateX(300px) scale(.7);
+
+transition:1.5s;
+
+z-index:5;
 
 }
 
 
 .monkey.show{
 
-animation:monkeyIn 2,5s forwards;
-
-}
-
-
-@keyframes monkeyIn{
-
-
-0%{
-
-opacity:0;
-
-transform:
-translateX(300px)
-scale(.5);
-
-}
-
-
-70%{
-
-transform:
-translateX(-20px)
-scale(1.1);
-
-}
-
-
-100%{
-
 opacity:1;
 
-transform:
-translateX(0)
-scale(1);
-
-}
+transform:translateX(0) scale(1);
 
 }
 
 
 
-/* кот */
+/* КОТ */
 
 .cat{
 
 position:absolute;
 
-left:8%;
+right:10%;
 
-bottom:5%;
+bottom:80px;
 
-width:350px;
+width:420px;
 
 opacity:0;
 
-}
+transform:scale(.7);
 
+transition:1.5s;
+
+z-index:5;
+
+}
 
 
 .cat.show{
 
-animation:catIn 2.5s forwards;
-
-}
-
-
-
-@keyframes catIn{
-
-
-from{
-
-opacity:0;
-
-transform:
-translateY(300px);
-
-}
-
-
-to{
-
 opacity:1;
 
-transform:
-translateY(0);
+transform:scale(1);
 
 }
 
-}
 
 
+/* подпись мартышки */
 
-/* подписи */
-
-.text{
+.monkeyText{
 
 position:absolute;
 
-width:100%;
+bottom:20px;
 
-bottom:85%;
+width:100%;
 
 text-align:center;
 
-font-size:45px;
-
-color:white;
+font-size:50px;
 
 font-weight:bold;
 
-text-shadow:
-0 5px 15px black;
+color:white;
+
+text-shadow:0 5px 20px black;
+
+opacity:0;
+
+transition:1s;
+
+z-index:10;
 
 }
 
 
+
+.monkeyText.show{
+
+opacity:1;
+
+}
+
+
+
+/* подпись кота */
 
 .catText{
 
 position:absolute;
 
-bottom:30px;
-
-left:0;
+bottom:20px;
 
 width:100%;
 
 text-align:center;
 
-font-size:45px;
-
-color:white;
+font-size:50px;
 
 font-weight:bold;
 
-text-shadow:
-0 5px 15px black;
+color:white;
+
+text-shadow:0 5px 20px black;
 
 opacity:0;
+
+transition:1s;
+
+z-index:10;
 
 }
 
@@ -246,7 +202,23 @@ opacity:0;
 
 opacity:1;
 
-animation:show 1s;
+}
+
+
+
+/* лёгкая тряска */
+
+@keyframes shake{
+
+0%{transform:translateX(0)}
+
+25%{transform:translateX(-10px)}
+
+50%{transform:translateX(10px)}
+
+75%{transform:translateX(-10px)}
+
+100%{transform:translateX(0)}
 
 }
 
@@ -262,7 +234,8 @@ animation:show 1s;
 <div class="background"></div>
 
 
-<div class="title">
+
+<div class="mainText">
 
 Я тебя так вижу 😂
 
@@ -271,21 +244,34 @@ animation:show 1s;
 
 
 <img 
-src="1F6CCEBF-BE7C-4DA8-BAF6-85FB6D24DD93.gif"
+id="monkey"
 class="monkey"
-id="monkey">
+src="1F6CCEBF-BE7C-4DA8-BAF6-85FB6D24DD93.gif">
+
 
 
 <img 
-src="853BF6E2-1664-4CD2-BC84-076CB1B52672.gif"
+id="cat"
 class="cat"
-id="cat">
+src="853BF6E2-1664-4CD2-BC84-076CB1B52672.gif">
 
 
 
-<div class="catText" id="catText">
+<div 
+id="monkeyText"
+class="monkeyText">
 
-Это когда тебя Даня не понимает 😂
+Я тебя так вижу 😂
+
+</div>
+
+
+
+<div 
+id="catText"
+class="catText">
+
+А это ты 😂
 
 </div>
 
@@ -294,31 +280,53 @@ id="cat">
 <script>
 
 
+let monkey=document.getElementById("monkey");
+
+let cat=document.getElementById("cat");
+
+let monkeyText=document.getElementById("monkeyText");
+
+let catText=document.getElementById("catText");
+
+
+
+// через 5 секунд появляется мартышка
+
 setTimeout(()=>{
 
-document
-.getElementById("monkey")
-.classList.add("show");
+monkey.classList.add("show");
+
+monkeyText.classList.add("show");
 
 
 },5000);
 
 
 
+// через 10 секунд мартышка исчезает, кот появляется
+
 setTimeout(()=>{
 
 
-document
-.getElementById("cat")
-.classList.add("show");
+monkey.classList.remove("show");
+
+monkeyText.classList.remove("show");
 
 
-document
-.getElementById("catText")
-.classList.add("show");
+
+setTimeout(()=>{
 
 
-},8000);
+cat.classList.add("show");
+
+catText.classList.add("show");
+
+
+},1000);
+
+
+
+},10000);
 
 
 
