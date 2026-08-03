@@ -10,74 +10,157 @@
 <style>
 
 *{
+margin:0;
+padding:0;
 box-sizing:border-box;
 }
 
+
 body{
-margin:0;
+
 height:100vh;
 overflow:hidden;
 font-family:Georgia,serif;
+background:#050814;
 color:white;
-text-align:center;
-background:#050510;
+
 }
 
+
+/* Небо */
 
 .sky{
-position:fixed;
-width:100%;
-height:100%;
-background:linear-gradient(#050510,#15152b);
-z-index:-2;
-}
 
-
-.flash{
-position:fixed;
-width:100%;
-height:100%;
-background:white;
-opacity:0;
-animation:lightning 6s infinite;
-z-index:-1;
-}
-
-
-@keyframes lightning{
-
-0%,92%,100%{
-opacity:0;
-}
-
-93%{
-opacity:.9;
-}
-
-94%{
-opacity:0;
-}
-
-96%{
-opacity:.7;
-}
-
-97%{
-opacity:0;
-}
-
-}
-
-
-.rain{
 position:absolute;
 width:100%;
 height:100%;
+
+background:
+radial-gradient(circle at 50% 20%,#34405c,#090b16 60%);
+
+}
+
+
+/* облака */
+
+.cloud{
+
+position:absolute;
+width:700px;
+height:200px;
+
+background:rgba(0,0,0,.35);
+
+filter:blur(35px);
+
+border-radius:50%;
+
+animation:moveCloud 20s infinite alternate;
+
+}
+
+
+.cloud.one{
+
+top:80px;
+left:-100px;
+
+}
+
+
+.cloud.two{
+
+top:180px;
+right:-150px;
+
+animation-delay:5s;
+
+}
+
+
+@keyframes moveCloud{
+
+from{
+transform:translateX(0);
+}
+
+to{
+transform:translateX(120px);
+}
+
+}
+
+
+
+/* молния */
+
+.lightning{
+
+position:absolute;
+width:100%;
+height:100%;
+
+background:white;
+
+opacity:0;
+
+animation:flash 7s infinite;
+
+}
+
+
+
+@keyframes flash{
+
+0%,90%,100%{
+opacity:0;
+}
+
+
+91%{
+opacity:1;
+}
+
+
+92%{
+opacity:0;
+}
+
+
+94%{
+opacity:.8;
+}
+
+
+95%{
+opacity:0;
+}
+
+}
+
+
+
+/* дождь */
+
+.rain{
+
+position:absolute;
+width:100%;
+height:100%;
+
 background-image:
-linear-gradient(120deg,transparent 45%,rgba(255,255,255,.3) 50%,transparent 55%);
-background-size:20px 40px;
+
+linear-gradient(
+115deg,
+transparent 40%,
+rgba(255,255,255,.4) 50%,
+transparent 60%
+);
+
+background-size:25px 45px;
+
 animation:rain .5s linear infinite;
-opacity:.4;
+
 }
 
 
@@ -88,39 +171,93 @@ background-position:0 0;
 }
 
 to{
-background-position:-20px 40px;
+background-position:-50px 100px;
 }
+
+}
+
+
+
+/* центр */
+
+
+.content{
+
+position:relative;
+
+height:100vh;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+justify-content:center;
+
+text-align:center;
+
+}
+
+
+.date{
+
+font-size:32px;
+
+color:#ffd7e8;
+
+margin-bottom:25px;
+
+text-shadow:0 0 20px pink;
 
 }
 
 
 
 h1{
-margin-top:60px;
-font-size:40px;
+
+font-size:55px;
+
+margin-bottom:40px;
+
 }
 
 
-.date{
-font-size:28px;
-color:#ffd6e7;
-}
 
+/* конверт */
 
 
 .envelope{
 
-width:320px;
-height:210px;
-background:#1c1c2e;
-margin:50px auto;
-border-radius:15px;
+width:420px;
 
-box-shadow:
-0 0 40px rgba(255,255,255,.2);
+height:260px;
+
+background:#3b1f32;
+
+border-radius:20px;
 
 position:relative;
+
+box-shadow:
+
+0 0 60px rgba(255,200,220,.4);
+
+animation:float 4s infinite ease-in-out;
+
 overflow:hidden;
+
+}
+
+
+
+@keyframes float{
+
+50%{
+
+transform:translateY(-15px);
+
+}
 
 }
 
@@ -132,53 +269,121 @@ content:"";
 
 position:absolute;
 
-border-left:160px solid transparent;
-border-right:160px solid transparent;
-border-top:110px solid #343450;
+top:0;
+
+left:0;
+
+border-left:210px solid transparent;
+
+border-right:210px solid transparent;
+
+border-top:130px solid #602641;
 
 }
 
 
 
-.message{
+.letter{
 
 position:absolute;
-top:70px;
-width:100%;
-padding:10px;
 
-font-size:24px;
 z-index:2;
+
+top:100px;
+
+width:100%;
+
+font-size:30px;
+
+line-height:1.4;
 
 }
 
+
+
+.seal{
+
+position:absolute;
+
+z-index:3;
+
+bottom:20px;
+
+left:180px;
+
+width:60px;
+
+height:60px;
+
+background:#c9a227;
+
+border-radius:50%;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:30px;
+
+}
+
+
+/* кнопка */
 
 
 button{
 
-padding:18px 40px;
+margin-top:50px;
+
+padding:20px 50px;
+
+border-radius:50px;
 
 border:none;
 
-border-radius:40px;
+font-size:26px;
 
 background:#d63384;
 
 color:white;
 
-font-size:24px;
-
 cursor:pointer;
 
-box-shadow:0 0 20px pink;
+box-shadow:
+
+0 0 30px #ff8fc7;
+
+transition:.3s;
+
+}
+
+
+button:hover{
+
+transform:scale(1.1);
 
 }
 
 
 
-button:hover{
+/* переход */
 
-transform:scale(1.05);
+.fade{
+
+animation:fade 3s forwards;
+
+}
+
+
+@keyframes fade{
+
+to{
+
+opacity:0;
+
+}
 
 }
 
@@ -193,46 +398,63 @@ transform:scale(1.05);
 
 <div class="sky"></div>
 
-<div class="flash"></div>
+<div class="cloud one"></div>
+
+<div class="cloud two"></div>
+
+<div class="lightning"></div>
 
 <div class="rain"></div>
 
 
 
-<audio id="thunder" autoplay loop>
+<audio id="thunder" loop>
 
-<source src="ozarnikru-raskat-groma.mp3" type="audio/mpeg">
+<source src="ozarnikru-raskat-groma.mp3">
 
 </audio>
 
 
 
-<div id="scene">
-
-
-<h1>
-Наша история ❤️
-</h1>
+<div class="content" id="page">
 
 
 <div class="date">
 
 04.10.2023<br>
 
-День, который изменил всё...
+День, который изменил всё ❤️
 
 </div>
+
+
+
+<h1>
+
+Наша история
+
+</h1>
 
 
 
 <div class="envelope">
 
-<div class="message">
+
+<div class="letter">
 
 Мне нужно сказать тебе<br>
+
 что-то важное......
 
 </div>
+
+
+<div class="seal">
+
+❤️
+
+</div>
+
 
 </div>
 
@@ -249,55 +471,57 @@ transform:scale(1.05);
 
 
 
-
 <script>
 
 
-let sound=document.getElementById("thunder");
+let audio=document.getElementById("thunder");
 
 
 document.body.addEventListener("click",()=>{
 
-sound.play();
+audio.play();
 
-});
+},{once:true});
 
 
 
 function openLetter(){
 
-
-document.body.style.transition="3s";
-
-document.body.style.background="#fff1f7";
+document.getElementById("page")
+.classList.add("fade");
 
 
-document.getElementById("scene").innerHTML=`
+setTimeout(()=>{
 
-<h1 style="color:#d63384">
 
-✨ Наша история продолжается ✨
+document.body.innerHTML=`
+
+<div style="
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#fff0f7;
+font-family:Georgia;
+text-align:center;
+color:#b52b65;
+">
+
+<h1>
+
+🌹 Скоро здесь расцветёт наша история ❤️
 
 </h1>
 
 
-<div style="
-font-size:70px;
-">
-
-🌹💌🌹
-
 </div>
 
 
-<h2 style="color:#9b2855">
-
-Скоро здесь появится наше письмо ❤️
-
-</h2>
-
-
 `;
+
+
+},3000);
+
 
 }
 
