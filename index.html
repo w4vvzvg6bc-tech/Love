@@ -5,125 +5,180 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Важное сообщение ❤️</title>
+<title>Наша история ❤️</title>
 
 <style>
 
+*{
+box-sizing:border-box;
+}
+
 body{
 margin:0;
-min-height:100vh;
-background:linear-gradient(#ffe6f0,#fff);
-font-family:Georgia,serif;
-text-align:center;
+height:100vh;
 overflow:hidden;
-color:#9b2855;
+font-family:Georgia,serif;
+color:white;
+text-align:center;
+background:#050510;
 }
+
+
+.sky{
+position:fixed;
+width:100%;
+height:100%;
+background:linear-gradient(#050510,#15152b);
+z-index:-2;
+}
+
+
+.flash{
+position:fixed;
+width:100%;
+height:100%;
+background:white;
+opacity:0;
+animation:lightning 6s infinite;
+z-index:-1;
+}
+
+
+@keyframes lightning{
+
+0%,92%,100%{
+opacity:0;
+}
+
+93%{
+opacity:.9;
+}
+
+94%{
+opacity:0;
+}
+
+96%{
+opacity:.7;
+}
+
+97%{
+opacity:0;
+}
+
+}
+
+
+.rain{
+position:absolute;
+width:100%;
+height:100%;
+background-image:
+linear-gradient(120deg,transparent 45%,rgba(255,255,255,.3) 50%,transparent 55%);
+background-size:20px 40px;
+animation:rain .5s linear infinite;
+opacity:.4;
+}
+
+
+@keyframes rain{
+
+from{
+background-position:0 0;
+}
+
+to{
+background-position:-20px 40px;
+}
+
+}
+
 
 
 h1{
-margin-top:50px;
-font-size:38px;
+margin-top:60px;
+font-size:40px;
 }
+
+
+.date{
+font-size:28px;
+color:#ffd6e7;
+}
+
 
 
 .envelope{
-width:300px;
-height:200px;
-background:#f7b6ce;
-margin:50px auto 30px;
+
+width:320px;
+height:210px;
+background:#1c1c2e;
+margin:50px auto;
 border-radius:15px;
+
+box-shadow:
+0 0 40px rgba(255,255,255,.2);
+
 position:relative;
-box-shadow:0 15px 30px #aaa;
+overflow:hidden;
+
 }
+
 
 
 .envelope:before{
+
 content:"";
+
 position:absolute;
-top:0;
-left:0;
-border-left:150px solid transparent;
-border-right:150px solid transparent;
-border-top:100px solid #ee8fb2;
+
+border-left:160px solid transparent;
+border-right:160px solid transparent;
+border-top:110px solid #343450;
+
 }
 
 
-.text{
+
+.message{
+
 position:absolute;
-top:75px;
+top:70px;
 width:100%;
-font-size:22px;
-font-weight:bold;
+padding:10px;
+
+font-size:24px;
 z-index:2;
-color:white;
+
 }
+
 
 
 button{
-padding:18px 35px;
+
+padding:18px 40px;
+
 border:none;
-border-radius:30px;
-font-size:22px;
-cursor:pointer;
-margin:15px;
+
+border-radius:40px;
+
+background:#d63384;
+
 color:white;
-}
 
+font-size:24px;
 
-.open{
-background:#e91e63;
-}
+cursor:pointer;
 
+box-shadow:0 0 20px pink;
 
-.yes{
-background:#d4af37;
-}
-
-
-.no{
-background:#b30000;
 }
 
 
 
-.card{
-display:none;
-background:white;
-padding:35px;
-width:80%;
-max-width:500px;
-margin:30px auto;
-border-radius:25px;
-box-shadow:0 10px 30px #aaa;
-font-size:28px;
-}
+button:hover{
 
-
-.big{
-font-size:45px;
-color:#e91e63;
-}
-
-
-.cat{
-width:300px;
-border-radius:20px;
-}
-
-
-.explosion{
-animation:shake .5s infinite;
-background:white;
-}
-
-
-@keyframes shake{
-
-0%{transform:translate(5px,5px)}
-25%{transform:translate(-5px,5px)}
-50%{transform:translate(5px,-5px)}
-75%{transform:translate(-5px,-5px)}
-100%{transform:translate(0)}
+transform:scale(1.05);
 
 }
 
@@ -136,130 +191,113 @@ background:white;
 <body>
 
 
-<div id="main">
+<div class="sky"></div>
 
-<h1>У меня есть кое-что важное...... ❤️</h1>
+<div class="flash"></div>
+
+<div class="rain"></div>
+
+
+
+<audio id="thunder" autoplay loop>
+
+<source src="ozarnikru-raskat-groma.mp3" type="audio/mpeg">
+
+</audio>
+
+
+
+<div id="scene">
+
+
+<h1>
+Наша история ❤️
+</h1>
+
+
+<div class="date">
+
+04.10.2023<br>
+
+День, который изменил всё...
+
+</div>
+
 
 
 <div class="envelope">
 
-<div class="text">
+<div class="message">
+
 Мне нужно сказать тебе<br>
 что-то важное......
-</div>
 
 </div>
 
+</div>
 
-<button class="open" onclick="question()">
-Посмотреть важное 💌
+
+
+<button onclick="openLetter()">
+
+💌 Открыть письмо
+
 </button>
 
 
 </div>
 
-
-
-<div id="question" class="card">
-
-<h2>
-Вы уверены, что хотите посмотреть? 🤨
-</h2>
-
-
-<button class="yes" onclick="love()">
-Принято, моя королева 👑
-</button>
-
-
-<button class="no" onclick="errorPage()">
-Пока не время 😈
-</button>
-
-
-</div>
-
-
-
-<div id="love" class="card">
-
-<div class="big">
-❤️
-</div>
-
-
-<h2>
-Важное сообщение:
-</h2>
-
-
-<p>
-Купить колье ❤️💍
-</p>
-
-
-<p>
-Спасибо за понимание 😌
-</p>
-
-
-</div>
-
-
-
-<div id="error" class="card">
-
-<img class="cat" src="IMG_0881.jpeg">
-
-
-<h2>
-Сайт временно отключён 😂
-</h2>
-
-
-<p>
-Причина:<br>
-<strong>
-недостаточно романтики 💔😂
-</strong>
-</p>
-
-
-</div>
 
 
 
 <script>
 
 
-function question(){
-
-document.getElementById("main").style.display="none";
-document.getElementById("question").style.display="block";
-
-}
+let sound=document.getElementById("thunder");
 
 
+document.body.addEventListener("click",()=>{
 
-function love(){
+sound.play();
 
-document.getElementById("question").style.display="none";
-document.getElementById("love").style.display="block";
-
-}
+});
 
 
 
-function errorPage(){
+function openLetter(){
 
-document.body.classList.add("explosion");
 
-setTimeout(()=>{
+document.body.style.transition="3s";
 
-document.getElementById("question").style.display="none";
-document.getElementById("error").style.display="block";
+document.body.style.background="#fff1f7";
 
-},1500);
+
+document.getElementById("scene").innerHTML=`
+
+<h1 style="color:#d63384">
+
+✨ Наша история продолжается ✨
+
+</h1>
+
+
+<div style="
+font-size:70px;
+">
+
+🌹💌🌹
+
+</div>
+
+
+<h2 style="color:#9b2855">
+
+Скоро здесь появится наше письмо ❤️
+
+</h2>
+
+
+`;
 
 }
 
