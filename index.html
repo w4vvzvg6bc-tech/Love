@@ -1,424 +1,60 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Это ты 😂</title>
-
+<title>Love</title>
 
 <style>
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&display=swap');
-
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
+html,body{
+    margin:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:black;
 }
 
-
-body{
-
-width:100vw;
-height:100vh;
-
-overflow:hidden;
-
-font-family:'Cormorant Garamond',serif;
-
-}
-
-
-/* ФОН */
-
-.background{
-
-position:absolute;
-
-inset:0;
-
-background-image:url("IMG_0897.jpeg");
-
-background-size:cover;
-
-background-position:center;
-
-animation:cameraMove 18s infinite alternate ease-in-out;
-
-}
-
-
-
-@keyframes cameraMove{
-
-from{
-
-transform:scale(1);
-
-}
-
-to{
-
-transform:scale(1.08);
-
-}
-
-}
-
-
-
-/* контейнер */
 
 .container{
+    width:100vw;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
 
-position:relative;
 
-width:100%;
+.photo{
 
-height:100vh;
+    width:100%;
+    height:100%;
 
-display:flex;
+    object-fit:cover;
 
-justify-content:center;
+    opacity:0;
 
-align-items:center;
+    animation:show 3s ease forwards;
 
 }
 
 
-
-/* главный текст */
-
-
-.mainText{
-
-position:absolute;
-
-top:12%;
-
-font-size:70px;
-
-color:white;
-
-text-align:center;
-
-text-shadow:
-
-0 5px 20px rgba(0,0,0,.7);
-
-
-opacity:0;
-
-animation:textAppear 2s forwards;
-
-
-}
-
-
-
-@keyframes textAppear{
-
-
-from{
-
-opacity:0;
-
-transform:translateY(-40px);
-
-}
-
-
-to{
-
-opacity:1;
-
-transform:translateY(0);
-
-}
-
-
-}
-
-
-
-/* персонажи */
-
-
-.character{
-
-
-position:absolute;
-
-bottom:80px;
-
-left:50%;
-
-
-width:420px;
-
-
-opacity:0;
-
-
-filter:
-
-drop-shadow(0 20px 30px rgba(0,0,0,.5));
-
-
-}
-
-
-
-.monkey{
-
-transform:
-
-translateX(-50%)
-translateY(80px)
-scale(.7);
-
-}
-
-
-
-.monkey.show{
-
-
-animation:
-
-monkeyAppear 2s forwards;
-
-
-}
-
-
-
-@keyframes monkeyAppear{
-
+@keyframes show{
 
 0%{
-
-opacity:0;
-
-transform:
-
-translateX(-50%)
-translateY(100px)
-scale(.6);
-
+    opacity:0;
+    transform:scale(1.15);
 }
-
-
-
-70%{
-
-transform:
-
-translateX(-50%)
-translateY(-20px)
-scale(1.05);
-
-
-}
-
 
 
 100%{
-
-opacity:1;
-
-transform:
-
-translateX(-50%)
-translateY(0)
-scale(1);
-
-
+    opacity:1;
+    transform:scale(1);
 }
 
-
 }
-
-
-
-
-
-.cat{
-
-
-transform:
-
-translateX(-50%)
-translateY(80px)
-scale(.7);
-
-
-}
-
-
-.cat.show{
-
-
-animation:
-
-catAppear 2s forwards;
-
-
-}
-
-
-
-
-@keyframes catAppear{
-
-
-from{
-
-opacity:0;
-
-transform:
-
-translateX(-50%)
-translateY(100px)
-scale(.6);
-
-}
-
-
-to{
-
-opacity:1;
-
-transform:
-
-translateX(-50%)
-translateY(0)
-scale(1);
-
-
-}
-
-
-}
-
-
-
-/* исчезновение */
-
-
-.hide{
-
-
-animation:fadeOut 1.5s forwards;
-
-
-}
-
-
-
-@keyframes fadeOut{
-
-
-to{
-
-opacity:0;
-
-transform:
-
-translateX(-50%)
-scale(.7);
-
-}
-
-
-}
-
-
-
-
-/* подписи */
-
-
-.caption{
-
-
-position:absolute;
-
-bottom:20px;
-
-width:100%;
-
-
-text-align:center;
-
-
-font-size:55px;
-
-
-font-weight:bold;
-
-
-color:white;
-
-
-text-shadow:
-
-0 5px 20px black;
-
-
-
-opacity:0;
-
-
-}
-
-
-
-.caption.show{
-
-
-animation:
-
-captionIn 1.5s forwards;
-
-
-}
-
-
-
-@keyframes captionIn{
-
-
-from{
-
-opacity:0;
-
-transform:translateY(40px);
-
-}
-
-
-to{
-
-opacity:1;
-
-transform:translateY(0);
-
-}
-
-
-}
-
-
-
 
 
 </style>
-
 
 </head>
 
@@ -426,134 +62,12 @@ transform:translateY(0);
 <body>
 
 
-
-<div class="background"></div>
-
-
-
 <div class="container">
 
-
-
-<div class="mainText">
-
-Так я тебя вижу<br>
-на работе...
+<img class="photo" src="IMG_0897.jpeg">
 
 </div>
-
-
-
-<img
-
-id="monkey"
-
-class="character monkey"
-
-src="1F6CCEBF-BE7C-4DA8-BAF6-85FB6D24DD93.gif">
-
-
-
-<img
-
-id="cat"
-
-class="character cat"
-
-src="853BF6E2-1664-4CD2-BC84-076CB1B52672.gif">
-
-
-
-<div id="monkeyCaption" class="caption">
-
-Я тебя так вижу 😂
-
-</div>
-
-
-
-<div id="catCaption" class="caption">
-
-Это когда тебя Даня не понимает 😂
-
-</div>
-
-
-
-</div>
-
-
-
-
-<script>
-
-
-const monkey =
-document.getElementById("monkey");
-
-
-const cat =
-document.getElementById("cat");
-
-
-const monkeyCaption =
-document.getElementById("monkeyCaption");
-
-
-const catCaption =
-document.getElementById("catCaption");
-
-
-
-
-// через 5 секунд мартышка
-
-
-setTimeout(()=>{
-
-
-monkey.classList.add("show");
-
-monkeyCaption.classList.add("show");
-
-
-},5000);
-
-
-
-
-
-// через 12 секунд кот
-
-
-setTimeout(()=>{
-
-
-monkey.classList.add("hide");
-
-monkeyCaption.classList.remove("show");
-
-
-
-setTimeout(()=>{
-
-
-cat.classList.add("show");
-
-catCaption.classList.add("show");
-
-
-},1500);
-
-
-
-},12000);
-
-
-
-</script>
 
 
 </body>
-
 </html>
