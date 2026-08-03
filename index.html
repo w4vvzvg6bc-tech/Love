@@ -1,172 +1,229 @@
-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html lang="ru">
+<head>
 
-<title>Для любимого ❤️</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Важное сообщение ❤️</title>
 
 <style>
-* {
-    box-sizing: border-box;
+
+body{
+margin:0;
+min-height:100vh;
+background:linear-gradient(#ffe6f0,#fff);
+font-family:Georgia,serif;
+text-align:center;
+overflow:hidden;
+color:#9b2855;
 }
 
-body {
-    margin: 0;
-    min-height: 100vh;
-    font-family: Georgia, serif;
-    background: linear-gradient(135deg, #ffd6e7, #fff0f6);
-    overflow-x: hidden;
-    text-align: center;
-    color: #9b2855;
+
+h1{
+margin-top:50px;
+font-size:38px;
 }
 
-body::before {
-    content: "❤️ ❤️ ❤️ ❤️ ❤️";
-    position: fixed;
-    top: 20px;
-    left: 0;
-    width: 100%;
-    font-size: 35px;
-    opacity: 0.15;
-    animation: float 5s infinite;
+
+.envelope{
+width:300px;
+height:200px;
+background:#f7b6ce;
+margin:50px auto 30px;
+border-radius:15px;
+position:relative;
+box-shadow:0 15px 30px #aaa;
 }
 
-h1 {
-    margin-top: 60px;
-    font-size: 45px;
-    color: #d63384;
+
+.envelope:before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+border-left:150px solid transparent;
+border-right:150px solid transparent;
+border-top:100px solid #ee8fb2;
 }
 
-.subtitle {
-    font-size: 24px;
-    margin-bottom: 40px;
+
+.text{
+position:absolute;
+top:75px;
+width:100%;
+font-size:22px;
+font-weight:bold;
+z-index:2;
+color:white;
 }
 
-.buttons {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    flex-wrap: wrap;
+
+button{
+padding:18px 35px;
+border:none;
+border-radius:30px;
+font-size:22px;
+cursor:pointer;
+margin:15px;
+color:white;
 }
 
-button {
-    width: 300px;
-    height: 150px;
-    border-radius: 25px;
-    border: none;
-    color: white;
-    font-size: 32px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 10px 25px rgba(0,0,0,.2);
-    transition: .3s;
+
+.open{
+background:#e91e63;
 }
 
-button:hover {
-    transform: scale(1.08);
+
+.yes{
+background:#d4af37;
 }
 
-.love {
-    background: linear-gradient(135deg,#ff69b4,#ff1493);
+
+.no{
+background:#b30000;
 }
 
-.no {
-    background: linear-gradient(135deg,#ff3333,#b30000);
+
+
+.card{
+display:none;
+background:white;
+padding:35px;
+width:80%;
+max-width:500px;
+margin:30px auto;
+border-radius:25px;
+box-shadow:0 10px 30px #aaa;
+font-size:28px;
 }
 
-.card {
-    display: none;
-    margin: 50px auto;
-    background: white;
-    width: 80%;
-    max-width: 600px;
-    padding: 40px;
-    border-radius: 30px;
-    box-shadow: 0 10px 30px rgba(0,0,0,.15);
-    animation: show 0.6s;
+
+.big{
+font-size:45px;
+color:#e91e63;
 }
 
-.card h2 {
-    font-size: 38px;
-    color:#d63384;
+
+.cat{
+width:300px;
+border-radius:20px;
 }
 
-.card img {
-    width:250px;
-    border-radius:20px;
+
+.explosion{
+animation:shake .5s infinite;
+background:white;
 }
 
-.catText {
-    color:#cc0000;
-    font-size:40px;
-    font-weight:bold;
+
+@keyframes shake{
+
+0%{transform:translate(5px,5px)}
+25%{transform:translate(-5px,5px)}
+50%{transform:translate(5px,-5px)}
+75%{transform:translate(-5px,-5px)}
+100%{transform:translate(0)}
+
 }
 
-@keyframes show {
-    from {
-        opacity:0;
-        transform:translateY(50px);
-    }
-    to {
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-@keyframes float {
-    50% {
-        transform:translateY(20px);
-    }
-}
 
 </style>
+
 </head>
 
 
 <body>
 
-<h1>Привет, любимый! ❤️</h1>
 
-<div class="subtitle">
-У меня для тебя вопрос... сделай выбор 😉
+<div id="main">
+
+<h1>У меня есть кое-что важное...... ❤️</h1>
+
+
+<div class="envelope">
+
+<div class="text">
+Мне нужно сказать тебе<br>
+что-то важное......
 </div>
-
-
-<div class="buttons">
-
-<button class="love" onclick="love()">
-Нажми меня 💕
-</button>
-
-
-<button class="no" onclick="noLove()">
-Не нажимай меня 😈
-</button>
 
 </div>
 
 
+<button class="open" onclick="question()">
+Посмотреть важное 💌
+</button>
 
-<div id="loveCard" class="card">
+
+</div>
+
+
+
+<div id="question" class="card">
 
 <h2>
-Я люблю тебя ❤️
+Вы уверены, что хотите посмотреть? 🤨
 </h2>
 
-<p style="font-size:30px;">
-Когда повышение ЗП? 😘
+
+<button class="yes" onclick="love()">
+Принято, моя королева 👑
+</button>
+
+
+<button class="no" onclick="errorPage()">
+Пока не время 😈
+</button>
+
+
+</div>
+
+
+
+<div id="love" class="card">
+
+<div class="big">
+❤️
+</div>
+
+
+<h2>
+Важное сообщение:
+</h2>
+
+
+<p>
+Купить колье ❤️💍
 </p>
 
-💕💕💕
+
+<p>
+Спасибо за понимание 😌
+</p>
+
 
 </div>
 
 
 
-<div id="noCard" class="card">
+<div id="error" class="card">
 
-<img src="cat.jpg">
+<img class="cat" src="IMG_0881.jpeg">
 
-<div class="catText">
-Что хотели?!? 😂
-</div>
+
+<h2>
+Сайт временно отключён 😂
+</h2>
+
+
+<p>
+Причина:<br>
+<strong>
+недостаточно романтики 💔😂
+</strong>
+</p>
+
 
 </div>
 
@@ -174,22 +231,38 @@ button:hover {
 
 <script>
 
+
+function question(){
+
+document.getElementById("main").style.display="none";
+document.getElementById("question").style.display="block";
+
+}
+
+
+
 function love(){
 
-document.getElementById("loveCard").style.display="block";
+document.getElementById("question").style.display="none";
+document.getElementById("love").style.display="block";
 
-document.getElementById("noCard").style.display="none";
+}
+
+
+
+function errorPage(){
+
+document.body.classList.add("explosion");
+
+setTimeout(()=>{
+
+document.getElementById("question").style.display="none";
+document.getElementById("error").style.display="block";
+
+},1500);
 
 }
 
-
-function noLove(){
-
-document.getElementById("noCard").style.display="block";
-
-document.getElementById("loveCard").style.display="none";
-
-}
 
 </script>
 
